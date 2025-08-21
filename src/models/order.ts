@@ -1,6 +1,15 @@
-export type Order = {
-  id: number;
+export enum OrderStatus {
+  Pending = 'Pending',
+  Processing = 'Processing',
+  Completed = 'Completed',
+}
+
+export type OrderInput = {
   productId: number;
   customerName: string;
-  status: 'Pending' | 'Processing' | 'Completed';
+}
+
+export type Order = OrderInput & {
+  id: number;
+  status: OrderStatus;
 }

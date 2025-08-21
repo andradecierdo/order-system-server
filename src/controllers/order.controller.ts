@@ -1,23 +1,20 @@
 import { Request, Response } from 'express';
-import { Order } from '../models/order';
+import { OrderInput } from '../models/order';
+import { OrderService } from '../services';
 
 export class OrderController {
-  private orders: Order[] = [];
+  constructor(private orderService: OrderService) {}
 
   public createOrder = async (req: Request, res: Response) => {
     const { customerName, productId } = req.body;
 
-    const newOrder: Order = {
-      id: 1,
+    const newOrder: OrderInput = {
       customerName,
       productId,
-      status: 'Processing',
     };
 
-    this.orders.push(newOrder);
+    this.orderService.createOrder(newOrder);
 
-    // TODO process order
-
-    res.status(201).json({ success: true, order: newOrder });
+    res.status(201).json({ success: true });
   };
 }
