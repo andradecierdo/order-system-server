@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { OrderInput } from '../models/order';
-import { OrderService } from '../services';
+import { IOrderService } from '../services/order.service';
 
 export class OrderController {
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: IOrderService) {}
 
   public createOrder = async (req: Request, res: Response) => {
     const { customerName, productId } = req.body;
